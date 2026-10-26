@@ -1,0 +1,197 @@
+/* Service lists (shared by the homepage preview and the services page)
+   and the layout of services.html. */
+
+/* ---------------------------------------------------- Service item extras */
+.service__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.service__tag {
+  padding: 0.125rem var(--space-2);
+  border: 1px solid rgb(200 176 122 / 0.5);
+  border-radius: var(--radius);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* One column, used inside a category on the services page */
+@media (min-width: 56.25rem) {
+  .services--single {
+    grid-template-columns: 1fr;
+  }
+}
+
+.services-note__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.services-noscript {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-graphite);
+  color: var(--color-steel);
+}
+
+/* Current page in the main navigation */
+.site-nav__link[aria-current='page'] {
+  color: var(--color-gold);
+}
+
+/* ============================================================ PAGE HERO */
+.page-hero {
+  position: relative;
+  padding-block: calc(var(--header-h) + clamp(3rem, 8vw, 6rem)) clamp(3rem, 6vw, 4.5rem);
+  border-bottom: 1px solid var(--color-graphite);
+  background:
+    radial-gradient(ellipse 50% 70% at 85% 0%, rgb(200 176 122 / 0.1), transparent 70%),
+    radial-gradient(ellipse 80% 90% at 70% 20%, #1c1d20 0%, var(--color-black) 70%);
+}
+
+.page-hero__inner {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.page-hero__title {
+  font-size: clamp(3rem, 1.8rem + 5vw, 6rem);
+  font-weight: 900;
+}
+
+.page-hero__title em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.page-hero__lead {
+  max-width: 36rem;
+  font-size: var(--text-lg);
+}
+
+/* Category quick links: wrap on small screens */
+.menu-nav {
+  margin-top: var(--space-4);
+}
+
+.menu-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.menu-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--space-6);
+  border: 1px solid var(--color-graphite);
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  color: var(--color-silver);
+  text-decoration: none;
+  transition:
+    border-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.menu-nav__link:hover {
+  border-color: var(--color-gold);
+  color: var(--color-chrome);
+}
+
+/* ======================================================= MENU CATEGORIES */
+.menu__categories {
+  display: grid;
+  gap: clamp(4rem, 9vw, 7rem);
+}
+
+.menu-category {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.menu-category__head {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.menu-category__num {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+.menu-category__title {
+  font-size: var(--text-2xl);
+}
+
+.menu-category__intro {
+  max-width: 24rem;
+  color: var(--color-steel);
+}
+
+/* Desktop: category title on the left (stays visible while scrolling
+   through its services), list on the right */
+@media (min-width: 56.25rem) {
+  .menu-category {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .menu-category__head {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-8));
+  }
+
+  .menu-category .services {
+    border-top: 1px solid var(--color-graphite);
+  }
+}
+
+/* ========================================================== BON À SAVOIR */
+.good-to-know {
+  display: grid;
+  gap: var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.good-to-know__item {
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgb(200 176 122 / 0.4);
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.good-to-know__title {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-chrome);
+}
+
+@media (min-width: 40rem) {
+  .good-to-know {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .good-to-know {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

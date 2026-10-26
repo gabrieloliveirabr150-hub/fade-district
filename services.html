@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services &amp; tarifs — Fade District, barbier à Genève</title>
+    <meta
+      name="description"
+      content="Coupes, skin fade, taille de barbe, rasage à l'ancienne et soins : la carte complète de Fade District à Genève, tarifs en CHF."
+    />
+    <meta name="theme-color" content="#0b0b0c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: preconnect speeds up the font download -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"
+    />
+
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+  <body>
+    <!-- ============================================ HEADER / NAVIGATION -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="/" aria-label="Fade District — accueil">
+          <span class="logo__main">Fade District</span>
+          <span class="logo__sub">Barbier · Genève</span>
+        </a>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+          <span class="nav-toggle__bar nav-toggle__bar--bottom"></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="/#maison">La Maison</a></li>
+            <li><a class="site-nav__link" href="/services.html" aria-current="page">Services</a></li>
+            <li><a class="site-nav__link" href="/#galerie">Galerie</a></li>
+            <li><a class="site-nav__link" href="/#infos">Infos</a></li>
+            <li class="site-nav__cta">
+              <a class="btn btn--primary btn--small" href="#reserver">Réserver</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ========================================================= PAGE HERO -->
+      <section class="page-hero" aria-labelledby="page-title">
+        <div class="container page-hero__inner">
+          <p class="eyebrow eyebrow--rule">Services &amp; tarifs</p>
+          <h1 class="page-hero__title" id="page-title">
+            <span class="text-metal">La carte</span> <em>complète.</em>
+          </h1>
+          <p class="page-hero__lead">
+            Coupes, barbe, rasage traditionnel et soins. Chaque prestation comprend
+            la consultation, le shampoing et le coiffage.
+          </p>
+
+          <!-- Quick links to each category, filled by services-menu.js -->
+          <nav class="menu-nav" aria-label="Catégories de services">
+            <ul class="menu-nav__list" data-category-nav></ul>
+          </nav>
+        </div>
+      </section>
+
+      <!-- ============================================================ LA CARTE -->
+      <div class="section menu">
+        <div class="container">
+          <!-- One section per category, built from src/data/services.js -->
+          <div class="menu__categories" data-service-categories></div>
+          <noscript>
+            <p class="services-noscript">
+              Activez JavaScript pour afficher la carte, ou appelez-nous au +41 22 000 00 00.
+            </p>
+          </noscript>
+        </div>
+      </div>
+
+      <!-- ======================================================= BON À SAVOIR -->
+      <section class="section section--alt" aria-labelledby="infos-pratiques">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow eyebrow--rule">Bon à savoir</p>
+            <h2 id="infos-pratiques">Avant votre visite.</h2>
+          </header>
+
+          <ul class="good-to-know" data-reveal>
+            <li class="good-to-know__item">
+              <h3 class="good-to-know__title">Sur rendez-vous</h3>
+              <p>Pour vous garantir le temps prévu, nous travaillons uniquement sur réservation.</p>
+            </li>
+            <li class="good-to-know__item">
+              <h3 class="good-to-know__title">Annulation</h3>
+              <p>Gratuite jusqu'à 24 heures avant le rendez-vous. Merci de nous prévenir au plus tôt.</p>
+            </li>
+            <li class="good-to-know__item">
+              <h3 class="good-to-know__title">Retard</h3>
+              <p>Au-delà de 10 minutes, la prestation peut être raccourcie pour respecter le client suivant.</p>
+            </li>
+            <li class="good-to-know__item">
+              <h3 class="good-to-know__title">Paiement</h3>
+              <p>Cartes de débit et de crédit ou TWINT. Tarifs en CHF, TVA incluse.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================= BOOKING CTA -->
+      <section class="section cta" id="reserver" aria-labelledby="reserver-title">
+        <div class="container cta__inner" data-reveal>
+          <p class="eyebrow">Réservation</p>
+          <h2 class="cta__title" id="reserver-title">Votre prochaine coupe commence ici.</h2>
+          <p>La réservation en ligne arrive bientôt. En attendant, appelez le salon.</p>
+          <div class="cta__actions">
+            <a class="btn btn--primary" href="tel:+41220000000">
+              Appeler le salon <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--ghost" href="/#infos">Voir les horaires</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================================================================ FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="logo" href="/" aria-label="Fade District — accueil">
+              <span class="logo__main">Fade District</span>
+              <span class="logo__sub">Barbier · Genève</span>
+            </a>
+            <p>Coupes, dégradés et rasage traditionnel au rasoir droit, au cœur de Genève.</p>
+          </div>
+
+          <nav aria-label="Navigation du pied de page">
+            <h2 class="site-footer__title">Explorer</h2>
+            <ul class="site-footer__list">
+              <li><a href="/#maison">La Maison</a></li>
+              <li><a href="/services.html">Carte complète</a></li>
+              <li><a href="/#galerie">Galerie</a></li>
+              <li><a href="/#infos">Infos</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <h2 class="site-footer__title">Contact</h2>
+            <ul class="site-footer__list">
+              <li>Rue de l'Exemple 00, 1204 Genève</li>
+              <li><a href="tel:+41220000000">+41 22 000 00 00</a></li>
+              <li><a href="mailto:contact@fadedistrict.example">contact@fadedistrict.example</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="site-footer__title">Horaires</h2>
+            <ul class="site-footer__list">
+              <li>Mar – Ven · 9h00 – 19h00</li>
+              <li>Jeu · nocturne jusqu'à 21h00</li>
+              <li>Sam · 8h30 – 17h00</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>© <span data-year>2026</span> Fade District. Établissement fictif — projet portfolio.</p>
+          <p>Adresse, contact et horaires fictifs.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

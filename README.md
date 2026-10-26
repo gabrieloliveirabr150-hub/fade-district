@@ -28,6 +28,7 @@ npm run preview  # preview the production build locally
 
 ```
 index.html          Homepage
+services.html       Full services & prices page
 vite.config.js      Vite config (list of HTML pages)
 public/             Static files copied as-is (favicon, images)
 src/styles/         tokens.css (design tokens), base.css (reset, typography),
@@ -36,6 +37,8 @@ src/styles/         tokens.css (design tokens), base.css (reset, typography),
 src/js/             main.js (entry point), nav.js (header + mobile menu),
                     reveal.js (scroll animations), hours.js (today's opening hours)
 src/js/razor/       razor-model.js (3D model), hero-razor.js (scene, animation)
+src/js/services-menu.js  Builds the service lists from the data
+src/data/services.js     All services and prices (single source of truth)
 ```
 
 ## Credits

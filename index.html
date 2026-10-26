@@ -159,68 +159,22 @@
             </p>
           </header>
 
-          <ul class="services" data-reveal>
-            <li class="service">
-              <div class="service__head">
-                <h3 class="service__name">Coupe signature</h3>
-                <span class="service__leader" aria-hidden="true"></span>
-                <p class="service__price">CHF 58.–</p>
-              </div>
-              <p class="service__desc">Coupe aux ciseaux et à la tondeuse, adaptée à votre morphologie.</p>
-              <p class="service__duration">45 min</p>
-            </li>
-            <li class="service">
-              <div class="service__head">
-                <h3 class="service__name">Skin fade</h3>
-                <span class="service__leader" aria-hidden="true"></span>
-                <p class="service__price">CHF 65.–</p>
-              </div>
-              <p class="service__desc">Dégradé à blanc millimétré, contours finis au rasoir droit.</p>
-              <p class="service__duration">50 min</p>
-            </li>
-            <li class="service">
-              <div class="service__head">
-                <h3 class="service__name">Coupe &amp; barbe</h3>
-                <span class="service__leader" aria-hidden="true"></span>
-                <p class="service__price">CHF 95.–</p>
-              </div>
-              <p class="service__desc">Le duo complet : coupe signature et taille de barbe sculptée.</p>
-              <p class="service__duration">75 min</p>
-            </li>
-            <li class="service">
-              <div class="service__head">
-                <h3 class="service__name">Taille de barbe</h3>
-                <span class="service__leader" aria-hidden="true"></span>
-                <p class="service__price">CHF 42.–</p>
-              </div>
-              <p class="service__desc">Mise en forme, contours au rasoir, serviette chaude et huile nourrissante.</p>
-              <p class="service__duration">30 min</p>
-            </li>
-            <li class="service">
-              <div class="service__head">
-                <h3 class="service__name">Rasage à l'ancienne</h3>
-                <span class="service__leader" aria-hidden="true"></span>
-                <p class="service__price">CHF 60.–</p>
-              </div>
-              <p class="service__desc">Serviettes chaudes, mousse au blaireau, rasoir droit et soin apaisant.</p>
-              <p class="service__duration">40 min</p>
-            </li>
-            <li class="service">
-              <div class="service__head">
-                <h3 class="service__name">Coupe junior</h3>
-                <span class="service__leader" aria-hidden="true"></span>
-                <p class="service__price">CHF 40.–</p>
-              </div>
-              <p class="service__desc">Pour les moins de 12 ans, avec la même attention au détail.</p>
-              <p class="service__duration">30 min</p>
-            </li>
-          </ul>
+          <!-- Filled by services-menu.js from src/data/services.js -->
+          <ul class="services" data-services="featured" data-reveal></ul>
+          <noscript>
+            <p class="services-noscript">
+              Activez JavaScript pour afficher la carte, ou appelez-nous au +41 22 000 00 00.
+            </p>
+          </noscript>
 
           <div class="services-note">
             <p>Tarifs en francs suisses, TVA incluse. Paiement par carte ou TWINT.</p>
-            <a class="btn btn--ghost" href="#reserver">
-              Réserver une prestation <span class="btn__arrow" aria-hidden="true">→</span>
-            </a>
+            <div class="services-note__actions">
+              <a class="btn btn--ghost" href="/services.html">Voir la carte complète</a>
+              <a class="btn btn--primary" href="#reserver">
+                Réserver <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -360,6 +314,7 @@
             <ul class="site-footer__list">
               <li><a href="#maison">La Maison</a></li>
               <li><a href="#services">Services</a></li>
+              <li><a href="/services.html">Carte complète</a></li>
               <li><a href="#galerie">Galerie</a></li>
               <li><a href="#infos">Infos</a></li>
             </ul>
