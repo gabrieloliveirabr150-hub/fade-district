@@ -1,0 +1,18 @@
+{
+  "name": "fade-district",
+  "version": "0.1.0",
+  "description": "Site vitrine d'un barbier premium fictif à Genève — projet portfolio.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}

@@ -1,0 +1,14 @@
+# Dependencies (reinstalled with `npm install`)
+node_modules/
+
+# Build output (regenerated with `npm run build`)
+dist/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# Local environment files
+.env
+.env.*
