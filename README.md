@@ -5,7 +5,7 @@ Website for **Fade District**, a fictional premium barbershop in Geneva, Switzer
 - Premium urban look: black, charcoal, metallic silver, champagne-gold accents
 - French-language content, prices in CHF
 - Responsive (mobile and desktop)
-- 3D straight razor in the hero, built with [Three.js](https://threejs.org/) *(coming soon)*
+- 3D straight razor in the hero, modelled procedurally with [Three.js](https://threejs.org/)
 
 ## Tech
 
@@ -35,6 +35,7 @@ src/styles/         tokens.css (design tokens), base.css (reset, typography),
                     main.css (imports everything)
 src/js/             main.js (entry point), nav.js (header + mobile menu),
                     reveal.js (scroll animations), hours.js (today's opening hours)
+src/js/razor/       razor-model.js (3D model), hero-razor.js (scene, animation)
 ```
 
 ## Credits

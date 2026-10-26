@@ -13,6 +13,15 @@ initNav();
 initReveal();
 highlightToday();
 
+// 3D razor: import() loads the module (and Three.js) only when this page has
+// a razor stage. Vite puts it in a separate file, so other pages stay light.
+const razorContainer = document.querySelector('#razor-canvas');
+if (razorContainer) {
+  import('./razor/hero-razor.js')
+    .then(({ initHeroRazor }) => initHeroRazor(razorContainer))
+    .catch(() => razorContainer.closest('.hero__stage')?.classList.add('is-static'));
+}
+
 // Keep the copyright year in the footer up to date automatically
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = new Date().getFullYear();

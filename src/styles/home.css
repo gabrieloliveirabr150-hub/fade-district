@@ -86,6 +86,7 @@
   width: 100%;
   aspect-ratio: 1;
   max-height: 32rem;
+  pointer-events: none; /* the 3D canvas never blocks clicks or taps */
 }
 
 .hero__stage-glow {
@@ -126,9 +127,36 @@
   background-repeat: no-repeat;
 }
 
+/* The canvas fades in once the first frame is drawn */
 .hero__canvas {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease-out);
+}
+
+.hero__canvas.is-ready {
+  opacity: 1;
+}
+
+.hero__canvas canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Still image of the razor: shown without JavaScript, or when main.js
+   adds .is-static because WebGL is unavailable. With display: none and
+   loading="lazy", browsers don't download it in the normal 3D case. */
+.hero__fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.js .hero__stage:not(.is-static) .hero__fallback {
+  display: none;
 }
 
 .hero__stage-caption {

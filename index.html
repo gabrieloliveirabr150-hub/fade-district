@@ -77,14 +77,24 @@
             </ul>
           </div>
 
-          <!-- 3D stage: hero-razor.js will render the Three.js razor inside
-               .hero__canvas in step 4. Decorative, so hidden from screen readers. -->
+          <!-- 3D stage: razor/hero-razor.js renders the Three.js razor inside
+               .hero__canvas. The image is only shown if WebGL or JavaScript
+               is unavailable. Decorative, so hidden from screen readers. -->
           <div class="hero__stage" aria-hidden="true">
             <div class="hero__stage-glow"></div>
             <div class="hero__stage-floor"></div>
+            <img
+              class="hero__fallback"
+              src="/images/rasoir-3d.webp"
+              alt=""
+              width="1098"
+              height="1368"
+              loading="lazy"
+              decoding="async"
+            />
             <div class="hero__canvas" id="razor-canvas"></div>
             <div class="hero__stage-frame"></div>
-            <p class="hero__stage-caption">Rasoir droit · rendu 3D en préparation</p>
+            <p class="hero__stage-caption">Acier brossé · ébène · finitions dorées</p>
           </div>
         </div>
         <span class="hero__scroll" aria-hidden="true"></span>
