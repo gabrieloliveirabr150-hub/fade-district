@@ -242,23 +242,42 @@
           <header class="section-head" data-reveal>
             <p class="eyebrow eyebrow--rule">04 · Nous trouver</p>
             <h2 id="infos-title">Au cœur de Genève.</h2>
+            <p class="section-head__lead">
+              Fade District est un salon imaginaire, créé pour un projet portfolio.
+              L'adresse et la carte ci-dessous servent uniquement de démonstration.
+            </p>
             <p class="badge">Adresse, contact et horaires fictifs</p>
           </header>
 
           <div class="infos" data-reveal>
             <article class="info-card">
               <h3 class="info-card__title">Le salon</h3>
-              <address>
-                Rue de l'Exemple 00<br />
-                1204 Genève, Suisse
-              </address>
+              <div class="address-block">
+                <p class="address-block__label">Adresse fictive · démonstration</p>
+                <address>
+                  Rue de l'Exemple 00<br />
+                  1204 Genève, Suisse
+                </address>
+              </div>
               <ul class="contact-list">
                 <li><a href="tel:+41220000000">+41 22 000 00 00</a></li>
                 <li><a href="mailto:contact@fadedistrict.example">contact@fadedistrict.example</a></li>
               </ul>
-              <div class="map-placeholder" role="img" aria-label="Plan stylisé, carte interactive à venir">
-                <span class="map-placeholder__pin"></span>
-                <span class="map-placeholder__label">Carte interactive à venir</span>
+              <!-- Becomes a real link automatically once src/data/location.js
+                   contains a confirmed address -->
+              <div class="directions">
+                <button
+                  class="btn btn--ghost"
+                  type="button"
+                  disabled
+                  aria-describedby="directions-note"
+                  data-directions
+                >
+                  Itinéraire
+                </button>
+                <p class="directions__note" id="directions-note" data-directions-note>
+                  Disponible dès que l'adresse réelle sera confirmée.
+                </p>
               </div>
             </article>
 
@@ -278,6 +297,62 @@
               </table>
             </article>
           </div>
+
+          <!-- Interactive map: loaded from OpenStreetMap only after a click
+               (see src/js/map.js). Settings live in src/data/location.js. -->
+          <div class="map" data-map data-reveal>
+            <div class="map__frame" data-map-frame></div>
+
+            <!-- Before loading: privacy notice + button -->
+            <div class="map__panel map__panel--start">
+              <p class="badge">Emplacement fictif · démonstration</p>
+              <h3 class="map__title">Carte interactive</h3>
+              <p class="map__text">
+                La carte est fournie par OpenStreetMap et ne se charge qu'à votre demande.
+                En l'affichant, votre navigateur se connecte aux serveurs d'OpenStreetMap,
+                qui reçoivent alors votre adresse IP.
+              </p>
+              <div class="map__actions">
+                <button class="btn btn--primary" type="button" data-map-load>
+                  Afficher la carte
+                </button>
+                <a
+                  class="map__link"
+                  href="https://www.openstreetmap.org/#map=13/46.2044/6.1432"
+                  target="_blank"
+                  rel="noopener"
+                  data-map-external
+                >
+                  Ouvrir sur OpenStreetMap <span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(nouvel onglet)</span>
+                </a>
+              </div>
+            </div>
+
+            <p class="map__panel map__panel--loading" aria-live="polite">Chargement de la carte…</p>
+
+            <!-- If the map can't load (offline, blocked by an extension…) -->
+            <div class="map__panel map__panel--error" role="alert">
+              <h3 class="map__title">La carte n'a pas pu être chargée.</h3>
+              <p class="map__text">Vérifiez votre connexion, ou ouvrez-la directement sur OpenStreetMap.</p>
+              <div class="map__actions">
+                <button class="btn btn--ghost" type="button" data-map-retry>Réessayer</button>
+                <a class="map__link" href="https://www.openstreetmap.org/#map=13/46.2044/6.1432" target="_blank" rel="noopener" data-map-external>
+                  Ouvrir sur OpenStreetMap <span aria-hidden="true">↗</span>
+                  <span class="visually-hidden">(nouvel onglet)</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Permanent label over the loaded map while the location is fictional -->
+            <p class="map__flag">Zone de démonstration — emplacement fictif</p>
+          </div>
+          <p class="map-caption">
+            Données cartographiques © contributeurs OpenStreetMap ·
+            <a href="https://www.openstreetmap.org/#map=13/46.2044/6.1432" target="_blank" rel="noopener" data-map-external>
+              Ouvrir la carte dans un nouvel onglet
+            </a>
+          </p>
         </div>
       </section>
 

@@ -6,6 +6,7 @@ import { initNav } from './nav.js';
 import { initReveal } from './reveal.js';
 import { highlightToday } from './hours.js';
 import { renderCategories, renderServiceMenus } from './services-menu.js';
+import { initMap } from './map.js';
 
 // Tells the CSS that JavaScript is running (used by the reveal animation)
 document.documentElement.classList.add('js');
@@ -17,6 +18,7 @@ renderServiceMenus();
 initNav();
 initReveal();
 highlightToday();
+initMap();
 
 // 3D razor: import() loads the module (and Three.js) only when this page has
 // a razor stage. Vite puts it in a separate file, so other pages stay light.

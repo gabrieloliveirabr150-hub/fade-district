@@ -465,38 +465,151 @@
   list-style: none;
 }
 
-/* Decorative map: a stylised street grid, no external map service yet */
-.map-placeholder {
+.address-block {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.address-block__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.directions {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
+.directions__note {
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+/* ---- Interactive map ----
+ * States, set by map.js on .map:
+ *   (none)      privacy notice + "Afficher la carte" button
+ *   .is-loading "Chargement…"
+ *   .is-loaded  the OpenStreetMap iframe
+ *   .is-error   fallback message with a retry button */
+.map {
   position: relative;
-  aspect-ratio: 16 / 9;
+  min-height: 26rem;
+  margin-top: var(--space-6);
+  overflow: hidden; /* the map never spills out of its frame */
   border: 1px solid var(--color-graphite);
+  /* Stylised street grid shown before the real map is loaded */
   background:
-    linear-gradient(115deg, transparent 48%, rgb(201 204 209 / 0.12) 48.5%, rgb(201 204 209 / 0.12) 51%, transparent 51.5%),
-    repeating-linear-gradient(0deg, transparent 0 38px, rgb(201 204 209 / 0.06) 38px 39px),
-    repeating-linear-gradient(90deg, transparent 0 54px, rgb(201 204 209 / 0.06) 54px 55px),
+    linear-gradient(115deg, transparent 48%, rgb(201 204 209 / 0.08) 48.5%, rgb(201 204 209 / 0.08) 51%, transparent 51.5%),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgb(201 204 209 / 0.05) 38px 39px),
+    repeating-linear-gradient(90deg, transparent 0 54px, rgb(201 204 209 / 0.05) 54px 55px),
     var(--color-black);
 }
 
-/* Gold pin with a soft pulsing ring */
-.map-placeholder__pin {
+.map__frame,
+.map__frame iframe {
   position: absolute;
-  top: 46%;
-  left: 52%;
-  width: 0.875rem;
-  height: 0.875rem;
-  border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 0 0 6px var(--color-gold-soft);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
-.map-placeholder__label {
+/* OpenStreetMap is bright by default: grayscale + invert gives a dark,
+   silver-toned map that matches the site */
+.map__frame iframe {
+  filter: grayscale(1) invert(0.92) contrast(0.85) brightness(0.95);
+}
+
+.map__panel {
   position: absolute;
-  left: var(--space-4);
-  bottom: var(--space-3);
-  font-size: 0.6875rem;
+  inset: 0;
+  display: none;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-4);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: linear-gradient(90deg, rgb(11 11 12 / 0.92) 0%, rgb(11 11 12 / 0.6) 70%, rgb(11 11 12 / 0.3) 100%);
+}
+
+.map__title {
+  font-size: var(--text-xl);
+}
+
+.map__text {
+  max-width: 34rem;
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.map__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-2);
+}
+
+.map__link {
+  font-size: var(--text-sm);
+  color: var(--color-silver);
+}
+
+/* Show the right panel for the current state */
+.map:not(.is-loading, .is-loaded, .is-error) .map__panel--start,
+.map.is-error .map__panel--error {
+  display: grid;
+}
+
+.map.is-loading .map__panel--loading {
+  display: grid;
+  justify-items: center;
+  font-size: var(--text-sm);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--color-steel);
+}
+
+/* The load button needs JavaScript; without it, only the link is shown */
+html:not(.js) [data-map-load] {
+  display: none;
+}
+
+/* "Demonstration" label: top left, away from the map's zoom buttons
+   (top right) and credits (bottom right). Clicks pass through it. */
+.map__flag {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  display: none;
+  max-width: calc(100% - 5rem);
+  padding: var(--space-1) var(--space-3);
+  border: 1px dashed var(--color-gold);
+  background: rgb(11 11 12 / 0.85);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  pointer-events: none;
+}
+
+.map.is-loaded:not(.is-confirmed) .map__flag {
+  display: block;
+}
+
+.map-caption {
+  margin-top: var(--space-3);
+  font-size: 0.75rem;
+  color: var(--color-steel);
+}
+
+@media (min-width: 56.25rem) {
+  .map {
+    min-height: 0;
+    aspect-ratio: 21 / 9;
+  }
 }
 
 .hours {

@@ -50,12 +50,19 @@ html {
 }
 
 .btn--ghost {
+  background: transparent; /* <button> elements have a default grey background */
   border-color: var(--color-graphite);
   color: var(--color-chrome);
 }
 
 .btn--ghost:hover {
   border-color: var(--color-silver);
+}
+
+/* Unavailable action, e.g. "Itinéraire" while the address is fictional */
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .btn--small {
