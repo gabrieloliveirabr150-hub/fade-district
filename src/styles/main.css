@@ -1,56 +1,5 @@
 /* Entry stylesheet: order matters — tokens first, then the rules that use them. */
 @import './tokens.css';
 @import './base.css';
-
-/*
- * ---- Temporary style guide (step 2 only) ----
- * Lets us check colors and fonts in the browser.
- * Will be replaced by the real homepage in step 3.
- */
-.styleguide {
-  padding-block: var(--space-16);
-  display: grid;
-  gap: var(--space-16);
-}
-
-.styleguide__intro {
-  display: grid;
-  gap: var(--space-6);
-}
-
-.swatches {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  gap: var(--space-4);
-  padding: 0;
-  list-style: none;
-}
-
-.swatch {
-  border: 1px solid var(--color-graphite);
-  border-radius: var(--radius);
-  background: var(--color-charcoal);
-  overflow: hidden;
-}
-
-.swatch__color {
-  height: 5rem;
-  background: var(--swatch);
-}
-
-.swatch__label {
-  padding: var(--space-3);
-  font-size: var(--text-sm);
-}
-
-.swatch__label code {
-  display: block;
-  color: var(--color-steel);
-}
-
-.type-scale {
-  display: grid;
-  gap: var(--space-6);
-  border-top: 1px solid var(--color-graphite);
-  padding-top: var(--space-8);
-}
+@import './components.css';
+@import './home.css';

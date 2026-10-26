@@ -15,6 +15,7 @@ canvas,
 video {
   display: block;
   max-width: 100%;
+  height: auto; /* keeps proportions when width/height attributes are set */
 }
 
 button,

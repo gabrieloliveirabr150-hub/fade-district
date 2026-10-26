@@ -12,6 +12,7 @@
   --color-silver: #c9ccd1;         /* main text */
   --color-chrome: #f2f3f5;         /* headings, strongest contrast */
   --color-gold: #c8b07a;           /* champagne accent — use sparingly */
+  --color-gold-light: #dcc79a;     /* gold hover state */
   --color-gold-soft: rgb(200 176 122 / 0.15);
 
   /* Metallic gradient, used for decorative text and lines */
@@ -52,6 +53,7 @@
   --container-max: 75rem;          /* 1200px */
   --gutter: clamp(1rem, 4vw, 2.5rem);
   --radius: 2px;                   /* sharp, editorial corners */
+  --header-h: 4.5rem;              /* fixed navigation bar height */
 
   /* ---- Motion ---- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

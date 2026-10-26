@@ -30,9 +30,16 @@ npm run preview  # preview the production build locally
 index.html          Homepage
 vite.config.js      Vite config (list of HTML pages)
 public/             Static files copied as-is (favicon, images)
-src/styles/         CSS: tokens.css (design tokens), base.css, main.css
-src/js/             JavaScript: main.js (entry point)
+src/styles/         tokens.css (design tokens), base.css (reset, typography),
+                    components.css (buttons, header, footer), home.css (homepage),
+                    main.css (imports everything)
+src/js/             main.js (entry point), nav.js (header + mobile menu),
+                    reveal.js (scroll animations), hours.js (today's opening hours)
 ```
+
+## Credits
+
+Photos from [Unsplash](https://unsplash.com/) (Unsplash License): Allef Vinicius, Agustin Fernandez, Ivan Cortez, Maxim Makarov, Mitchell Orr.
 
 ## Disclaimer
 

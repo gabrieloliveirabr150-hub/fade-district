@@ -1,0 +1,546 @@
+/* Homepage sections, in the order they appear on the page. */
+
+/* =================================================================== HERO */
+.hero {
+  position: relative;
+  isolation: isolate; /* keeps the decorative layers below inside the hero */
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding-block: calc(var(--header-h) + var(--space-8)) var(--space-16);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 45% at 72% 48%, rgb(200 176 122 / 0.09), transparent 70%),
+    radial-gradient(ellipse 90% 80% at 75% 50%, #1c1d20 0%, var(--color-black) 70%);
+}
+
+/* Film grain: a tiny SVG noise texture over the hero for a cinematic feel */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.hero__title {
+  font-size: clamp(3.25rem, 1.6rem + 6vw, 7rem);
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.hero__title em {
+  display: block;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--color-gold);
+}
+
+.hero__lead {
+  margin-top: var(--space-8);
+  max-width: 34rem;
+  font-size: var(--text-lg);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.hero__facts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+  padding: var(--space-6) 0 0;
+  border-top: 1px solid var(--color-graphite);
+  list-style: none;
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.hero__facts strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-chrome);
+}
+
+/* ---- 3D razor stage ----
+ * Empty, styled container. In step 4, hero-razor.js will insert a
+ * Three.js <canvas> into .hero__canvas. The glow and floor reflection
+ * stay behind it as part of the lighting atmosphere. */
+.hero__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  max-height: 32rem;
+}
+
+.hero__stage-glow {
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(242 243 245 / 0.08) 0%, rgb(200 176 122 / 0.05) 35%, transparent 68%);
+}
+
+/* Elliptical reflection on the "floor", like a product on a showroom plinth */
+.hero__stage-floor {
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 12%;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgb(201 204 209 / 0.16), transparent 70%);
+  filter: blur(6px);
+}
+
+/* Thin corner marks, like a camera viewfinder */
+.hero__stage-frame {
+  --c: rgb(201 204 209 / 0.35);
+  --l: 1.75rem;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--l) 1px,
+    linear-gradient(var(--c), var(--c)) top left / 1px var(--l),
+    linear-gradient(var(--c), var(--c)) top right / var(--l) 1px,
+    linear-gradient(var(--c), var(--c)) top right / 1px var(--l),
+    linear-gradient(var(--c), var(--c)) bottom left / var(--l) 1px,
+    linear-gradient(var(--c), var(--c)) bottom left / 1px var(--l),
+    linear-gradient(var(--c), var(--c)) bottom right / var(--l) 1px,
+    linear-gradient(var(--c), var(--c)) bottom right / 1px var(--l);
+  background-repeat: no-repeat;
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__stage-caption {
+  position: absolute;
+  left: var(--space-6);
+  bottom: var(--space-4);
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-steel);
+}
+
+/* "Scroll" hint at the bottom of the hero */
+.hero__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-6);
+  z-index: 2;
+  display: none;
+  width: 1px;
+  height: 3rem;
+  overflow: hidden;
+  background: var(--color-graphite);
+}
+
+.hero__scroll::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-gold);
+  animation: scroll-line 2.4s var(--ease-out) infinite;
+}
+
+@keyframes scroll-line {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+
+@media (min-width: 56.25rem) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+
+  .hero__stage {
+    aspect-ratio: 4 / 5;
+    max-height: min(76svh, 44rem);
+  }
+
+  .hero__scroll {
+    display: block;
+  }
+}
+
+@media (max-width: 30rem) {
+  .hero__facts {
+    gap: var(--space-4);
+  }
+}
+
+/* ============================================================= LA MAISON */
+.intro {
+  display: grid;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.intro__media {
+  position: relative;
+}
+
+/* Offset gold outline behind the photo */
+.intro__media::before {
+  content: '';
+  position: absolute;
+  inset: var(--space-4) calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-4);
+  border: 1px solid rgb(200 176 122 / 0.4);
+  z-index: -1;
+}
+
+.intro__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 45% center;
+  filter: grayscale(0.35) contrast(1.05);
+}
+
+.intro__text {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.pillars {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-graphite);
+}
+
+.pillar {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--space-1) var(--space-4);
+}
+
+.pillar__num {
+  grid-row: span 2;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+.pillar__title {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-chrome);
+}
+
+.pillar__desc {
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+@media (min-width: 56.25rem) {
+  .intro {
+    grid-template-columns: 5fr 6fr;
+    gap: clamp(4rem, 8vw, 8rem);
+  }
+}
+
+/* ============================================================== SERVICES */
+.services {
+  display: grid;
+  gap: 0 clamp(3rem, 6vw, 6rem);
+  padding: 0;
+  list-style: none;
+}
+
+.service {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--color-graphite);
+}
+
+/* Name …… price, connected by a dotted "leader" line like a printed menu */
+.service__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+
+.service__name {
+  font-size: var(--text-lg);
+}
+
+.service__leader {
+  flex: 1;
+  min-width: var(--space-6);
+  border-bottom: 1px dotted var(--color-steel);
+  transform: translateY(-0.3em);
+}
+
+.service__price {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--color-gold);
+}
+
+.service__desc {
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.service__duration {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-silver);
+}
+
+.services-note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+@media (min-width: 56.25rem) {
+  .services {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =============================================================== GALLERY */
+.gallery {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.gallery__item {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-charcoal);
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* Black & white unifies photos from different photographers */
+  filter: grayscale(1) contrast(1.1) brightness(0.85);
+  transform: scale(1.02);
+  transition:
+    filter 700ms var(--ease-out),
+    transform 1200ms var(--ease-out);
+}
+
+.gallery__item:hover img {
+  filter: grayscale(0) contrast(1.05) brightness(0.95);
+  transform: scale(1.06);
+}
+
+.gallery__item figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: var(--space-12) var(--space-6) var(--space-4);
+  background: linear-gradient(transparent, rgb(11 11 12 / 0.85));
+  font-size: 0.75rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-chrome);
+}
+
+@media (min-width: 40rem) {
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery__item--tall {
+    grid-row: span 2;
+  }
+}
+
+/* Desktop: editorial mosaic
+   ┌────────┬────────────────┐
+   │        │      wide      │
+   │  tall  ├────────┬───────┤
+   │        │        │       │
+   └────────┴────────┴───────┘ */
+@media (min-width: 56.25rem) {
+  .gallery {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, minmax(16rem, 22vw));
+  }
+
+  .gallery__item img {
+    aspect-ratio: auto;
+  }
+
+  .gallery__item--wide {
+    grid-column: span 2;
+  }
+}
+
+/* ================================================================= INFOS */
+.infos {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.info-card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-6);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--color-graphite);
+  background: var(--color-charcoal);
+}
+
+.info-card__title {
+  font-size: var(--text-xl);
+}
+
+.info-card address {
+  font-style: normal;
+  font-size: var(--text-lg);
+  color: var(--color-chrome);
+}
+
+.contact-list {
+  display: grid;
+  gap: var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+/* Decorative map: a stylised street grid, no external map service yet */
+.map-placeholder {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-graphite);
+  background:
+    linear-gradient(115deg, transparent 48%, rgb(201 204 209 / 0.12) 48.5%, rgb(201 204 209 / 0.12) 51%, transparent 51.5%),
+    repeating-linear-gradient(0deg, transparent 0 38px, rgb(201 204 209 / 0.06) 38px 39px),
+    repeating-linear-gradient(90deg, transparent 0 54px, rgb(201 204 209 / 0.06) 54px 55px),
+    var(--color-black);
+}
+
+/* Gold pin with a soft pulsing ring */
+.map-placeholder__pin {
+  position: absolute;
+  top: 46%;
+  left: 52%;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 6px var(--color-gold-soft);
+}
+
+.map-placeholder__label {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-3);
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-steel);
+}
+
+.hours {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hours th,
+.hours td {
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--color-graphite);
+  font-weight: 400;
+  text-align: left;
+}
+
+.hours td {
+  text-align: right;
+  color: var(--color-chrome);
+}
+
+.hours .is-closed td {
+  color: var(--color-steel);
+}
+
+/* Today's row, highlighted by hours.js */
+.hours .is-today th,
+.hours .is-today td {
+  color: var(--color-gold);
+}
+
+.hours .is-today th::after {
+  content: " · aujourd'hui";
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+@media (min-width: 56.25rem) {
+  .infos {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+/* ============================================================ BOOKING CTA */
+.cta {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 50% 70% at 50% 100%, rgb(200 176 122 / 0.12), transparent 70%),
+    var(--color-black);
+  border-top: 1px solid var(--color-graphite);
+}
+
+.cta__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-6);
+}
+
+.cta__title {
+  max-width: 18ch;
+  font-size: var(--text-2xl);
+}
+
+.cta p {
+  color: var(--color-steel);
+}
+
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}

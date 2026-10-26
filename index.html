@@ -22,66 +22,371 @@
     <script type="module" src="/src/js/main.js"></script>
   </head>
   <body>
-    <!-- Temporary style guide: replaced by the real homepage in step 3 -->
-    <main class="container styleguide">
-      <header class="styleguide__intro">
-        <p class="eyebrow">Genève — Guide de style</p>
-        <h1><span class="text-metal">Fade District</span></h1>
-        <p>
-          L'art du dégradé, la précision du rasoir. Cette page temporaire sert à
-          vérifier la palette et la typographie avant de construire le site.
-        </p>
-      </header>
+    <!-- ============================================ HEADER / NAVIGATION -->
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="/" aria-label="Fade District — accueil">
+          <span class="logo__main">Fade District</span>
+          <span class="logo__sub">Barbier · Genève</span>
+        </a>
 
-      <section aria-labelledby="palette-title">
-        <h2 id="palette-title">Palette</h2>
-        <ul class="swatches">
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-black)"></div>
-            <p class="swatch__label">Noir <code>#0b0b0c</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-charcoal)"></div>
-            <p class="swatch__label">Anthracite <code>#1a1b1d</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-graphite)"></div>
-            <p class="swatch__label">Graphite <code>#2a2c2f</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-steel)"></div>
-            <p class="swatch__label">Acier <code>#8a8f96</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-silver)"></div>
-            <p class="swatch__label">Argent <code>#c9ccd1</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-chrome)"></div>
-            <p class="swatch__label">Chrome <code>#f2f3f5</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--color-gold)"></div>
-            <p class="swatch__label">Champagne <code>#c8b07a</code></p>
-          </li>
-          <li class="swatch">
-            <div class="swatch__color" style="--swatch: var(--gradient-silver)"></div>
-            <p class="swatch__label">Dégradé métal <code>--gradient-silver</code></p>
-          </li>
-        </ul>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="visually-hidden">Ouvrir le menu</span>
+          <span class="nav-toggle__bar nav-toggle__bar--top"></span>
+          <span class="nav-toggle__bar nav-toggle__bar--bottom"></span>
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="#maison">La Maison</a></li>
+            <li><a class="site-nav__link" href="#services">Services</a></li>
+            <li><a class="site-nav__link" href="#galerie">Galerie</a></li>
+            <li><a class="site-nav__link" href="#infos">Infos</a></li>
+            <li class="site-nav__cta">
+              <a class="btn btn--primary btn--small" href="#reserver">Réserver</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ================================================================ HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow eyebrow--rule">Barbier premium · Genève</p>
+            <h1 class="hero__title" id="hero-title">
+              <span class="text-metal">Précision</span>
+              <em>à la lame.</em>
+            </h1>
+            <p class="hero__lead">
+              Dégradés nets, barbes sculptées et rasage traditionnel au rasoir droit.
+              Un salon au cœur de Genève, pensé pour prendre le temps de bien faire.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#reserver">
+                Réserver un créneau <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="btn btn--ghost" href="#services">Voir les services</a>
+            </div>
+            <ul class="hero__facts">
+              <li><strong>Mar – Sam</strong>Sur rendez-vous</li>
+              <li><strong>Rasoir droit</strong>Rasage traditionnel</li>
+              <li><strong>Genève</strong>Centre-ville</li>
+            </ul>
+          </div>
+
+          <!-- 3D stage: hero-razor.js will render the Three.js razor inside
+               .hero__canvas in step 4. Decorative, so hidden from screen readers. -->
+          <div class="hero__stage" aria-hidden="true">
+            <div class="hero__stage-glow"></div>
+            <div class="hero__stage-floor"></div>
+            <div class="hero__canvas" id="razor-canvas"></div>
+            <div class="hero__stage-frame"></div>
+            <p class="hero__stage-caption">Rasoir droit · rendu 3D en préparation</p>
+          </div>
+        </div>
+        <span class="hero__scroll" aria-hidden="true"></span>
       </section>
 
-      <section class="type-scale" aria-labelledby="type-title">
-        <p class="eyebrow">Typographie</p>
-        <h2 id="type-title">Playfair Display — titres éditoriaux</h2>
-        <h3>Coupe &amp; barbe — 75 CHF</h3>
-        <p>
-          Inter pour le texte courant : lisible, neutre et moderne. Chaque
-          prestation commence par une consultation pour définir la coupe qui
-          vous correspond.
-        </p>
-        <p><a href="#">Exemple de lien souligné en or</a></p>
+      <!-- =========================================================== LA MAISON -->
+      <section class="section" id="maison" aria-labelledby="maison-title">
+        <div class="container intro">
+          <figure class="intro__media" data-reveal>
+            <img
+              src="/images/fauteuil.webp"
+              alt="Un barbier taille la barbe d'un client incliné dans un fauteuil, dans une lumière tamisée."
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <div class="intro__text" data-reveal>
+            <p class="eyebrow eyebrow--rule">01 · La Maison</p>
+            <h2 id="maison-title">Un salon genevois, une exigence d'atelier.</h2>
+            <p>
+              Fade District est né d'une idée simple : traiter chaque coupe comme une pièce
+              sur mesure. Ici, pas de cadence imposée. Chaque rendez-vous commence par une
+              conversation et se termine par un miroir dans lequel vous vous reconnaissez.
+            </p>
+            <p>
+              Nos barbiers associent les techniques du dégradé contemporain aux gestes
+              classiques du rasoir droit, avec des produits sélectionnés pour leur qualité.
+            </p>
+
+            <div class="pillars">
+              <div class="pillar">
+                <span class="pillar__num">I.</span>
+                <h3 class="pillar__title">Consultation</h3>
+                <p class="pillar__desc">Morphologie, texture, style de vie : on écoute avant de couper.</p>
+              </div>
+              <div class="pillar">
+                <span class="pillar__num">II.</span>
+                <h3 class="pillar__title">Exécution</h3>
+                <p class="pillar__desc">Ciseaux, tondeuse et rasoir droit, maniés au millimètre.</p>
+              </div>
+              <div class="pillar">
+                <span class="pillar__num">III.</span>
+                <h3 class="pillar__title">Finitions</h3>
+                <p class="pillar__desc">Serviette chaude, soin et conseils pour garder la ligne.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================ SERVICES -->
+      <section class="section section--alt" id="services" aria-labelledby="services-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow eyebrow--rule">02 · Services</p>
+            <h2 id="services-title">La carte.</h2>
+            <p class="section-head__lead">
+              Chaque prestation comprend la consultation, le shampoing et le coiffage.
+            </p>
+          </header>
+
+          <ul class="services" data-reveal>
+            <li class="service">
+              <div class="service__head">
+                <h3 class="service__name">Coupe signature</h3>
+                <span class="service__leader" aria-hidden="true"></span>
+                <p class="service__price">CHF 58.–</p>
+              </div>
+              <p class="service__desc">Coupe aux ciseaux et à la tondeuse, adaptée à votre morphologie.</p>
+              <p class="service__duration">45 min</p>
+            </li>
+            <li class="service">
+              <div class="service__head">
+                <h3 class="service__name">Skin fade</h3>
+                <span class="service__leader" aria-hidden="true"></span>
+                <p class="service__price">CHF 65.–</p>
+              </div>
+              <p class="service__desc">Dégradé à blanc millimétré, contours finis au rasoir droit.</p>
+              <p class="service__duration">50 min</p>
+            </li>
+            <li class="service">
+              <div class="service__head">
+                <h3 class="service__name">Coupe &amp; barbe</h3>
+                <span class="service__leader" aria-hidden="true"></span>
+                <p class="service__price">CHF 95.–</p>
+              </div>
+              <p class="service__desc">Le duo complet : coupe signature et taille de barbe sculptée.</p>
+              <p class="service__duration">75 min</p>
+            </li>
+            <li class="service">
+              <div class="service__head">
+                <h3 class="service__name">Taille de barbe</h3>
+                <span class="service__leader" aria-hidden="true"></span>
+                <p class="service__price">CHF 42.–</p>
+              </div>
+              <p class="service__desc">Mise en forme, contours au rasoir, serviette chaude et huile nourrissante.</p>
+              <p class="service__duration">30 min</p>
+            </li>
+            <li class="service">
+              <div class="service__head">
+                <h3 class="service__name">Rasage à l'ancienne</h3>
+                <span class="service__leader" aria-hidden="true"></span>
+                <p class="service__price">CHF 60.–</p>
+              </div>
+              <p class="service__desc">Serviettes chaudes, mousse au blaireau, rasoir droit et soin apaisant.</p>
+              <p class="service__duration">40 min</p>
+            </li>
+            <li class="service">
+              <div class="service__head">
+                <h3 class="service__name">Coupe junior</h3>
+                <span class="service__leader" aria-hidden="true"></span>
+                <p class="service__price">CHF 40.–</p>
+              </div>
+              <p class="service__desc">Pour les moins de 12 ans, avec la même attention au détail.</p>
+              <p class="service__duration">30 min</p>
+            </li>
+          </ul>
+
+          <div class="services-note">
+            <p>Tarifs en francs suisses, TVA incluse. Paiement par carte ou TWINT.</p>
+            <a class="btn btn--ghost" href="#reserver">
+              Réserver une prestation <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= GALERIE -->
+      <section class="section" id="galerie" aria-labelledby="galerie-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow eyebrow--rule">03 · Galerie</p>
+            <h2 id="galerie-title">Le geste, en images.</h2>
+          </header>
+
+          <div class="gallery" data-reveal>
+            <figure class="gallery__item gallery__item--tall">
+              <img
+                src="/images/rasoir-coupe.webp"
+                alt="Gros plan d'un barbier tatoué qui dessine un contour au rasoir sur la nuque d'un client."
+                width="900"
+                height="1348"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Contours au rasoir</figcaption>
+            </figure>
+            <figure class="gallery__item gallery__item--wide">
+              <img
+                src="/images/vitrine-nuit.webp"
+                alt="Un salon de barbier vu à travers la vitrine, la nuit, éclairé d'une lumière bleutée."
+                width="1200"
+                height="800"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Après la fermeture</figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <img
+                src="/images/degrade.webp"
+                alt="Un barbier en béret travaille la coupe d'un client assis sous une cape rayée."
+                width="1200"
+                height="796"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Le dégradé</figcaption>
+            </figure>
+            <figure class="gallery__item">
+              <img
+                src="/images/salon-damier.webp"
+                alt="Fauteuils de barbier en cuir noir sur un sol en damier, sous un plafond à caissons."
+                width="900"
+                height="1350"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Le salon</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- =============================================================== INFOS -->
+      <section class="section section--alt" id="infos" aria-labelledby="infos-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow eyebrow--rule">04 · Nous trouver</p>
+            <h2 id="infos-title">Au cœur de Genève.</h2>
+            <p class="badge">Adresse, contact et horaires fictifs</p>
+          </header>
+
+          <div class="infos" data-reveal>
+            <article class="info-card">
+              <h3 class="info-card__title">Le salon</h3>
+              <address>
+                Rue de l'Exemple 00<br />
+                1204 Genève, Suisse
+              </address>
+              <ul class="contact-list">
+                <li><a href="tel:+41220000000">+41 22 000 00 00</a></li>
+                <li><a href="mailto:contact@fadedistrict.example">contact@fadedistrict.example</a></li>
+              </ul>
+              <div class="map-placeholder" role="img" aria-label="Plan stylisé, carte interactive à venir">
+                <span class="map-placeholder__pin"></span>
+                <span class="map-placeholder__label">Carte interactive à venir</span>
+              </div>
+            </article>
+
+            <article class="info-card">
+              <h3 class="info-card__title">Horaires</h3>
+              <table class="hours">
+                <caption class="visually-hidden">Horaires d'ouverture</caption>
+                <tbody>
+                  <tr data-day="1" class="is-closed"><th scope="row">Lundi</th><td>Fermé</td></tr>
+                  <tr data-day="2"><th scope="row">Mardi</th><td>9h00 – 19h00</td></tr>
+                  <tr data-day="3"><th scope="row">Mercredi</th><td>9h00 – 19h00</td></tr>
+                  <tr data-day="4"><th scope="row">Jeudi</th><td>9h00 – 21h00</td></tr>
+                  <tr data-day="5"><th scope="row">Vendredi</th><td>9h00 – 19h00</td></tr>
+                  <tr data-day="6"><th scope="row">Samedi</th><td>8h30 – 17h00</td></tr>
+                  <tr data-day="0" class="is-closed"><th scope="row">Dimanche</th><td>Fermé</td></tr>
+                </tbody>
+              </table>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= BOOKING CTA -->
+      <section class="section cta" id="reserver" aria-labelledby="reserver-title">
+        <div class="container cta__inner" data-reveal>
+          <p class="eyebrow">Réservation</p>
+          <h2 class="cta__title" id="reserver-title">Votre prochaine coupe commence ici.</h2>
+          <p>La réservation en ligne arrive bientôt. En attendant, appelez le salon.</p>
+          <div class="cta__actions">
+            <a class="btn btn--primary" href="tel:+41220000000">
+              Appeler le salon <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="btn btn--ghost" href="#infos">Voir les horaires</a>
+          </div>
+        </div>
       </section>
     </main>
+
+    <!-- ================================================================ FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="logo" href="/" aria-label="Fade District — accueil">
+              <span class="logo__main">Fade District</span>
+              <span class="logo__sub">Barbier · Genève</span>
+            </a>
+            <p>Coupes, dégradés et rasage traditionnel au rasoir droit, au cœur de Genève.</p>
+          </div>
+
+          <nav aria-label="Navigation du pied de page">
+            <h2 class="site-footer__title">Explorer</h2>
+            <ul class="site-footer__list">
+              <li><a href="#maison">La Maison</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#galerie">Galerie</a></li>
+              <li><a href="#infos">Infos</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <h2 class="site-footer__title">Contact</h2>
+            <ul class="site-footer__list">
+              <li>Rue de l'Exemple 00, 1204 Genève</li>
+              <li><a href="tel:+41220000000">+41 22 000 00 00</a></li>
+              <li><a href="mailto:contact@fadedistrict.example">contact@fadedistrict.example</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="site-footer__title">Horaires</h2>
+            <ul class="site-footer__list">
+              <li>Mar – Ven · 9h00 – 19h00</li>
+              <li>Jeu · nocturne jusqu'à 21h00</li>
+              <li>Sam · 8h30 – 17h00</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <p>© <span data-year>2026</span> Fade District. Établissement fictif — projet portfolio.</p>
+          <p>
+            Photos :
+            <a href="https://unsplash.com/@seteph" rel="noopener">Allef Vinicius</a>,
+            <a href="https://unsplash.com/@agustinfernandez" rel="noopener">Agustin Fernandez</a>,
+            <a href="https://unsplash.com/@ivancortez14" rel="noopener">Ivan Cortez</a>,
+            <a href="https://unsplash.com/@makarovio" rel="noopener">Maxim Makarov</a>,
+            <a href="https://unsplash.com/@mitchorr" rel="noopener">Mitchell Orr</a>
+            sur Unsplash
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
