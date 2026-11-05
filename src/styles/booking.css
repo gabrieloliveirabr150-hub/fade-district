@@ -486,7 +486,12 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 0;
+  /* Netlify's own "Powered by Netlify" badge (free plan) floats fixed in the
+     bottom-right corner, outside this site's HTML and markup we can't style.
+     Lifting the whole bar clear of that corner keeps "Suivant"/"Confirmer"
+     tappable even when the badge is on — see also README, "Passer en
+     production" / Netlify project settings to turn the badge off entirely. */
+  bottom: 4.5rem;
   z-index: 50;
   display: flex;
   gap: var(--space-3);
@@ -502,9 +507,10 @@
   flex: 1;
 }
 
-/* Leaves room so the fixed action bar never covers the last field on mobile */
+/* Leaves room so the fixed action bar (now lifted clear of the Netlify
+   badge corner, see .booking-actions above) never covers the last field. */
 .booking-panel {
-  padding-bottom: 5rem;
+  padding-bottom: 9.5rem;
 }
 
 @media (min-width: 56.25rem) {

@@ -58,6 +58,13 @@ booking flow could work for them — no backend, nothing sent anywhere.
 - `/reserver` and `/barbier` are short links defined in `public/_redirects`
   (Netlify rewrites, HTTP 200) to the real `/reserver.html` and `/admin.html`.
 
+On Netlify's free plan, a "Powered by Netlify" badge floats fixed in the
+page's bottom-right corner on the live site (not in local dev). The booking
+page's fixed "Suivant"/"Confirmer" bar is deliberately lifted clear of that
+corner (`.booking-actions` in `src/styles/booking.css`) so the badge can
+never block it. To remove the badge entirely: Netlify dashboard → Project
+configuration → General → "Powered by Netlify badge".
+
 **Presentation walkthrough**, meant to take under a minute: from the
 homepage, click "Réserver" → pick a service and barber → pick a date and
 time → on step 3, click "Remplir un exemple" to skip typing (fills a clearly
