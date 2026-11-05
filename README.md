@@ -43,6 +43,56 @@ src/js/map.js            Click-to-load OpenStreetMap embed
 src/data/location.js     Map view, marker and "confirmed" switch
 ```
 
+## Réservation et espace barbier (démo)
+
+A browser-only booking demo, built to show barbershop owners how an online
+booking flow could work for them — no backend, nothing sent anywhere.
+
+- **`/reserver`** (`reserver.html`): a 4-step booking wizard — service and
+  barber, date and time, contact details, confirmation — built on top of
+  `src/js/booking/slots.js` (pure, unit-tested opening-hours logic) and
+  `src/js/booking/store.js` (the async data layer, see below).
+- **`/barbier`** (`admin.html`): the barber-facing panel — day/week agenda,
+  actions on a booking (done / no-show / cancel), blocking a time slot,
+  and a client list. Gated by a demo-only password screen (`demo`).
+- `/reserver` and `/barbier` are short links defined in `public/_redirects`
+  (Netlify rewrites, HTTP 200) to the real `/reserver.html` and `/admin.html`.
+
+**Presentation walkthrough**, meant to take under a minute: from the
+homepage, click "Réserver" → pick a service and barber → pick a date and
+time → on step 3, click "Remplir un exemple" to skip typing (fills a clearly
+fictional name, phone and email) → "Confirmer" → on the success screen,
+click "Voir ce rendez-vous côté barbier →". That link jumps straight into
+the admin panel — no password asked — already on the right day, with the
+new booking highlighted and scrolled into view.
+
+### Limite de la démo
+
+There is no server: every booking and every admin action is read from and
+written to the browser's own `localStorage` (key `fd-demo-v1`, with an
+in-memory fallback if storage is unavailable). That means the booking page
+and the admin panel only ever share data when opened **in the same browser,
+on the same device** — a booking made on a phone will not appear in the
+admin panel open on a laptop, and resetting the demo in one browser doesn't
+affect another.
+
+A real, cross-device version needs a server-backed store (for example
+Supabase) behind `src/js/booking/store.js`. Every function there
+(`listAppointments`, `createAppointment`, `updateAppointment`, `listBlocks`,
+`createBlock`, `listClients`, `resetDemo`) is already async and returns a
+Promise for exactly this reason: swapping `localStorage` for real API calls
+shouldn't require touching any screen.
+
+### Passer en production
+
+Before this becomes a real product, it still needs:
+
+- A privacy page (Swiss nLPD compliance).
+- Data hosted in Switzerland or the EU.
+- A real, secure login for each barber, replacing the shared demo password.
+- Confirmation emails on booking, and a reminder email the day before.
+- Automatic deletion of old appointments (a data-retention policy).
+
 ## Interactive map
 
 The "Nous trouver" section (`#infos` on the homepage) contains an

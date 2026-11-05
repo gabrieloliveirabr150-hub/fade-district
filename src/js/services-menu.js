@@ -40,6 +40,12 @@ function serviceItem(service) {
 // All services from every category in one flat array
 const allServices = categories.flatMap((category) => category.services);
 
+// Shared lookup, so the booking wizard and the admin panel don't each
+// re-flatten and re-search src/data/services.js on their own.
+export function findServiceById(id) {
+  return allServices.find((service) => service.id === id) ?? null;
+}
+
 // Fills every element marked data-services="featured" (homepage preview)
 // or data-services="<category id>" (services page).
 export function renderServiceMenus() {

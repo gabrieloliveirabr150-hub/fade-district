@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Réserver — Fade District, barbier à Genève</title>
+    <meta
+      name="description"
+      content="Réservez votre créneau chez Fade District à Genève : prestation, barbier, date et heure, en quatre étapes."
+    />
+    <meta name="theme-color" content="#0b0b0c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"
+    />
+
+    <script type="module" src="/src/js/reserver.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="/" aria-label="Fade District — accueil">
+          <span class="logo__main">Fade District</span>
+          <span class="logo__sub">Barbier · Genève</span>
+        </a>
+        <a class="btn btn--ghost btn--small" href="/" aria-label="Retour à l'accueil">Retour</a>
+      </div>
+    </header>
+
+    <main class="booking">
+      <div class="container">
+        <p class="badge booking__badge">Démonstration · aucune donnée n'est envoyée</p>
+
+        <div data-booking-wizard>
+        <ol class="booking-steps" data-step-list aria-label="Étapes de la réservation">
+          <li class="booking-steps__item" data-step-item="1">
+            <span class="booking-steps__num">1</span>
+            <span class="booking-steps__label">Prestation</span>
+          </li>
+          <li class="booking-steps__item" data-step-item="2">
+            <span class="booking-steps__num">2</span>
+            <span class="booking-steps__label">Date &amp; heure</span>
+          </li>
+          <li class="booking-steps__item" data-step-item="3">
+            <span class="booking-steps__num">3</span>
+            <span class="booking-steps__label">Infos</span>
+          </li>
+          <li class="booking-steps__item" data-step-item="4">
+            <span class="booking-steps__num">4</span>
+            <span class="booking-steps__label">Confirmation</span>
+          </li>
+        </ol>
+
+        <form class="booking-panel" data-booking-form novalidate>
+          <!-- ============================================================ STEP 1 -->
+          <section class="booking-step" data-booking-step="1" aria-labelledby="step1-title">
+            <h1 class="booking-step__title" id="step1-title">Choisissez une prestation</h1>
+            <div data-step1-categories></div>
+
+            <h2 class="booking-step__subtitle">Votre barbier</h2>
+            <div class="barber-options" data-barber-options></div>
+
+            <p class="field__error" data-step1-error role="alert" hidden></p>
+          </section>
+
+          <!-- ============================================================ STEP 2 -->
+          <section class="booking-step" data-booking-step="2" hidden aria-labelledby="step2-title">
+            <h1 class="booking-step__title" id="step2-title">Choisissez une date et une heure</h1>
+
+            <div class="booking-calendar">
+              <div class="booking-calendar__head">
+                <button type="button" class="booking-calendar__nav" data-calendar-prev aria-label="Mois précédent">
+                  ‹
+                </button>
+                <p class="booking-calendar__month" data-calendar-month aria-live="polite"></p>
+                <button type="button" class="booking-calendar__nav" data-calendar-next aria-label="Mois suivant">
+                  ›
+                </button>
+              </div>
+              <div class="booking-calendar__weekdays" data-calendar-weekdays aria-hidden="true"></div>
+              <div class="booking-calendar__grid" role="group" aria-label="Jours du mois" data-calendar-grid></div>
+            </div>
+
+            <div class="booking-slots" data-slots-wrap hidden>
+              <h2 class="booking-step__subtitle">Horaires disponibles</h2>
+              <div class="booking-slots__grid" role="group" aria-label="Horaires disponibles" data-slots-grid></div>
+              <p class="booking-slots__empty" data-slots-empty hidden>
+                Aucun horaire disponible ce jour-là. Choisissez une autre date.
+              </p>
+            </div>
+
+            <p class="field__error" data-step2-error role="alert" hidden></p>
+          </section>
+
+          <!-- ============================================================ STEP 3 -->
+          <section class="booking-step" data-booking-step="3" hidden aria-labelledby="step3-title">
+            <div class="booking-step__head">
+              <h1 class="booking-step__title" id="step3-title">Vos informations</h1>
+              <button type="button" class="link-subtle" data-fill-example>Remplir un exemple</button>
+            </div>
+
+            <div class="booking-fields">
+              <div class="field">
+                <label class="field__label" for="field-first-name">Prénom</label>
+                <input
+                  class="field__input"
+                  type="text"
+                  id="field-first-name"
+                  autocomplete="given-name"
+                  required
+                  data-field="firstName"
+                  aria-describedby="field-first-name-error"
+                />
+                <p class="field__error" id="field-first-name-error" role="alert" hidden></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="field-last-name">Nom</label>
+                <input
+                  class="field__input"
+                  type="text"
+                  id="field-last-name"
+                  autocomplete="family-name"
+                  required
+                  data-field="lastName"
+                  aria-describedby="field-last-name-error"
+                />
+                <p class="field__error" id="field-last-name-error" role="alert" hidden></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="field-phone">Téléphone</label>
+                <input
+                  class="field__input"
+                  type="tel"
+                  id="field-phone"
+                  autocomplete="tel"
+                  required
+                  data-field="phone"
+                  aria-describedby="field-phone-error"
+                />
+                <p class="field__error" id="field-phone-error" role="alert" hidden></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="field-email">E-mail</label>
+                <input
+                  class="field__input"
+                  type="email"
+                  id="field-email"
+                  autocomplete="email"
+                  required
+                  data-field="email"
+                  aria-describedby="field-email-error"
+                />
+                <p class="field__error" id="field-email-error" role="alert" hidden></p>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="field-note">Remarque <span class="field__optional">(facultatif)</span></label>
+                <textarea class="field__textarea" id="field-note" data-field="note"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============================================================ STEP 4 -->
+          <section class="booking-step" data-booking-step="4" hidden aria-labelledby="step4-title">
+            <h1 class="booking-step__title" id="step4-title">Confirmez votre réservation</h1>
+            <dl class="booking-summary" data-summary></dl>
+            <p class="field__error" data-confirm-error role="alert" hidden></p>
+          </section>
+
+          <!-- ========================================================= SUCCESS -->
+          <section class="booking-step booking-success" data-booking-step="success" hidden aria-labelledby="success-title">
+            <h1 class="booking-step__title" id="success-title">C'est confirmé !</h1>
+            <dl class="booking-summary" data-success-summary></dl>
+
+            <div class="booking-success__demo">
+              <a class="btn btn--primary" data-view-in-admin href="/admin.html">
+                Voir ce rendez-vous côté barbier <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+              <p class="booking-success__demo-note">Raccourci de démonstration uniquement.</p>
+            </div>
+
+            <div class="booking-success__actions">
+              <button type="button" class="btn btn--ghost" data-download-ics>
+                Ajouter à mon calendrier
+              </button>
+              <a class="btn btn--ghost" href="/">Retour à l'accueil</a>
+            </div>
+
+            <p class="booking-note">
+              Dans la version réelle, vous recevriez un e-mail de confirmation et un rappel la veille.
+            </p>
+          </section>
+
+          <div class="booking-actions" data-booking-actions>
+            <button type="button" class="btn btn--ghost" data-step-back>Retour</button>
+            <button type="button" class="btn btn--primary" data-step-next>Suivant</button>
+            <button type="submit" class="btn btn--primary" data-step-confirm hidden>Confirmer</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container page-footer-line">
+        <p>© <span data-year>2026</span> Fade District. Projet conceptuel · Olix Studio.</p>
+        <p><a href="/admin.html">Espace barbier (démo)</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

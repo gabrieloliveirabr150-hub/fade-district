@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="noindex" />
+    <title>Panneau barbier — Fade District</title>
+    <meta name="description" content="Démonstration du panneau de gestion des rendez-vous pour Fade District." />
+    <meta name="theme-color" content="#0b0b0c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap"
+    />
+
+    <script type="module" src="/src/js/admin.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="logo" href="/" aria-label="Fade District — accueil">
+          <span class="logo__main">Fade District</span>
+          <span class="logo__sub">Barbier · Genève</span>
+        </a>
+        <a class="btn btn--ghost btn--small" href="/" aria-label="Retour à l'accueil">Retour</a>
+      </div>
+    </header>
+
+    <!-- ============================================================= LOGIN -->
+    <main class="admin-login" data-login-screen>
+      <div class="container">
+        <div class="admin-login__card">
+          <div>
+            <p class="eyebrow">Panneau barbier</p>
+            <h1 class="admin-login__title">Connexion</h1>
+          </div>
+
+          <button type="button" class="btn btn--primary" data-demo-login>Entrer en mode démo</button>
+
+          <p class="admin-login__divider"><span>ou avec le mot de passe</span></p>
+
+          <p class="admin-login__hint">
+            Mot de passe de démonstration : <strong>demo</strong><br />
+            Dans la version réelle, chaque barbier disposerait d'un accès propre et sécurisé.
+          </p>
+
+          <form data-login-form novalidate>
+            <div class="field">
+              <label class="field__label" for="login-password">Mot de passe</label>
+              <input
+                class="field__input"
+                type="password"
+                id="login-password"
+                autocomplete="current-password"
+                data-login-password
+              />
+              <p class="field__error" data-login-error role="alert" hidden>Mot de passe incorrect.</p>
+            </div>
+            <button type="submit" class="btn btn--primary">Entrer</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- ========================================================= DASHBOARD -->
+    <main class="admin" data-admin-dashboard hidden>
+      <div class="container">
+        <h1 class="visually-hidden">Panneau barbier</h1>
+        <p class="badge admin__badge">Démonstration · aucune donnée n'est envoyée</p>
+
+        <div class="admin-utility">
+          <a class="btn btn--ghost btn--small" href="/">Voir le site client</a>
+          <button type="button" class="btn btn--ghost btn--small" data-reset-demo>Réinitialiser la démo</button>
+        </div>
+        <div class="admin-reset__confirm" data-reset-confirm hidden>
+          <p>Toutes les données reviendront à l'état initial. Confirmer la réinitialisation ?</p>
+          <div class="admin-reset__confirm-actions">
+            <button type="button" class="btn btn--ghost" data-reset-no>Annuler</button>
+            <button type="button" class="btn btn--primary" data-reset-yes>Oui, réinitialiser</button>
+          </div>
+        </div>
+
+        <div class="admin-tabs" role="tablist" aria-label="Sections du panneau">
+          <button
+            type="button"
+            class="admin-tab"
+            id="tab-agenda"
+            data-tab="agenda"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-agenda"
+          >
+            Agenda
+          </button>
+          <button
+            type="button"
+            class="admin-tab"
+            id="tab-clients"
+            data-tab="clients"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-clients"
+          >
+            Clients
+          </button>
+        </div>
+
+        <!-- ------------------------------------------------------- AGENDA -->
+        <section id="panel-agenda" role="tabpanel" aria-labelledby="tab-agenda" data-tab-panel="agenda">
+          <div class="admin-toolbar">
+            <div class="toggle-group" role="group" aria-label="Vue">
+              <button type="button" class="toggle-btn" data-view="day" aria-pressed="true">Jour</button>
+              <button type="button" class="toggle-btn" data-view="week" aria-pressed="false">Semaine</button>
+            </div>
+            <div class="toggle-group" role="group" aria-label="Filtrer par barbier">
+              <button type="button" class="toggle-btn" data-barber-filter="all" aria-pressed="true">Tous</button>
+              <button type="button" class="toggle-btn" data-barber-filter="karim" aria-pressed="false">Karim</button>
+              <button type="button" class="toggle-btn" data-barber-filter="leo" aria-pressed="false">Léo</button>
+            </div>
+          </div>
+
+          <div class="admin-date-nav">
+            <button type="button" class="admin-date-nav__nav" data-date-prev aria-label="Période précédente">‹</button>
+            <p class="admin-date-nav__label" data-date-label aria-live="polite"></p>
+            <button type="button" class="admin-date-nav__nav" data-date-next aria-label="Période suivante">›</button>
+            <button type="button" class="btn btn--ghost btn--small" data-date-today>Aujourd'hui</button>
+          </div>
+
+          <p class="admin-summary" data-agenda-summary aria-live="polite"></p>
+
+          <button type="button" class="btn btn--ghost" data-toggle-block-form aria-expanded="false">
+            Bloquer un créneau
+          </button>
+
+          <form class="admin-block-form" data-block-form hidden novalidate>
+            <div class="field">
+              <label class="field__label" for="block-barber">Barbier</label>
+              <select class="field__input" id="block-barber" data-block-field="barberId">
+                <option value="karim">Karim</option>
+                <option value="leo">Léo</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="block-date">Date</label>
+              <input class="field__input" type="date" id="block-date" data-block-field="date" />
+            </div>
+            <div class="admin-block-form__row">
+              <div class="field">
+                <label class="field__label" for="block-start">Début</label>
+                <input class="field__input" type="time" id="block-start" step="900" data-block-field="start" />
+              </div>
+              <div class="field">
+                <label class="field__label" for="block-end">Fin</label>
+                <input class="field__input" type="time" id="block-end" step="900" data-block-field="end" />
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label" for="block-reason">Motif</label>
+              <select class="field__input" id="block-reason" data-block-field="reason">
+                <option value="pause">Pause</option>
+                <option value="conge">Congé</option>
+                <option value="vacances">Vacances</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="block-note">Note <span class="field__optional">(facultatif)</span></label>
+              <input class="field__input" type="text" id="block-note" data-block-field="note" />
+            </div>
+            <p class="field__error" data-block-error role="alert" hidden></p>
+            <div class="admin-block-form__actions">
+              <button type="button" class="btn btn--ghost" data-block-cancel>Annuler</button>
+              <button type="submit" class="btn btn--primary">Enregistrer le blocage</button>
+            </div>
+          </form>
+
+          <div class="agenda-section" data-agenda-list></div>
+        </section>
+
+        <!-- ------------------------------------------------------ CLIENTS -->
+        <section id="panel-clients" role="tabpanel" aria-labelledby="tab-clients" data-tab-panel="clients" hidden>
+          <div class="field client-search">
+            <label class="field__label" for="client-search">Rechercher un client</label>
+            <input class="field__input" type="search" id="client-search" data-client-search placeholder="Nom ou téléphone" />
+          </div>
+          <div data-client-list></div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span data-year>2026</span> Fade District. Projet conceptuel · Olix Studio.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -4,16 +4,18 @@ import '../styles/main.css';
 
 import { initNav } from './nav.js';
 import { initReveal } from './reveal.js';
-import { highlightToday } from './hours.js';
+import { renderHours, highlightToday } from './hours.js';
 import { renderCategories, renderServiceMenus } from './services-menu.js';
 import { initMap } from './map.js';
 
 // Tells the CSS that JavaScript is running (used by the reveal animation)
 document.documentElement.classList.add('js');
 
-// Build the service lists first, so the reveal animation can find them
+// Build the service lists and hours table first, so the reveal animation
+// and highlightToday() find them already in the DOM.
 renderCategories();
 renderServiceMenus();
+renderHours();
 
 initNav();
 initReveal();

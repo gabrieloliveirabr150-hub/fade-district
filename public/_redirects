@@ -1,0 +1,3 @@
+# Short links for the demo presentation (rewrites: the URL in the browser stays short).
+/reserver   /reserver.html   200
+/barbier    /admin.html      200

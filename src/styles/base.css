@@ -26,6 +26,13 @@ select {
   color: inherit;
 }
 
+/* Many components set their own `display` (e.g. .btn is inline-flex); without
+   this, [hidden] loses to those author rules at equal specificity and the
+   element stays visible. This keeps `el.hidden = true` reliable everywhere. */
+[hidden] {
+  display: none !important;
+}
+
 /* ---- Page ---- */
 html {
   color-scheme: dark;

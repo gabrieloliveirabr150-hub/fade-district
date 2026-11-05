@@ -14,6 +14,7 @@
   --color-gold: #c8b07a;           /* champagne accent — use sparingly */
   --color-gold-light: #dcc79a;     /* gold hover state */
   --color-gold-soft: rgb(200 176 122 / 0.15);
+  --color-error: #c87a7a;          /* form validation errors, booking + admin */
 
   /* Metallic gradient, used for decorative text and lines */
   --gradient-silver: linear-gradient(

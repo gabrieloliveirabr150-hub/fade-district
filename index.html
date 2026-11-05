@@ -43,7 +43,7 @@
             <li><a class="site-nav__link" href="#galerie">Galerie</a></li>
             <li><a class="site-nav__link" href="#infos">Infos</a></li>
             <li class="site-nav__cta">
-              <a class="btn btn--primary btn--small" href="#reserver">Réserver</a>
+              <a class="btn btn--primary btn--small" href="/reserver.html">Réserver</a>
             </li>
           </ul>
         </nav>
@@ -65,7 +65,7 @@
               Un salon au cœur de Genève, pensé pour prendre le temps de bien faire.
             </p>
             <div class="hero__actions">
-              <a class="btn btn--primary" href="#reserver">
+              <a class="btn btn--primary" href="/reserver.html">
                 Réserver un créneau <span class="btn__arrow" aria-hidden="true">→</span>
               </a>
               <a class="btn btn--ghost" href="#services">Voir les services</a>
@@ -163,7 +163,7 @@
           <ul class="services" data-services="featured" data-reveal></ul>
           <noscript>
             <p class="services-noscript">
-              Activez JavaScript pour afficher la carte, ou appelez-nous au +41 22 000 00 00.
+              Activez JavaScript pour afficher la carte et réserver en ligne.
             </p>
           </noscript>
 
@@ -171,7 +171,7 @@
             <p>Tarifs en francs suisses, TVA incluse. Paiement par carte ou TWINT.</p>
             <div class="services-note__actions">
               <a class="btn btn--ghost" href="/services.html">Voir la carte complète</a>
-              <a class="btn btn--primary" href="#reserver">
+              <a class="btn btn--primary" href="/reserver.html">
                 Réserver <span class="btn__arrow" aria-hidden="true">→</span>
               </a>
             </div>
@@ -260,7 +260,6 @@
                 </address>
               </div>
               <ul class="contact-list">
-                <li><a href="tel:+41220000000">+41 22 000 00 00</a></li>
                 <li><a href="mailto:contact@fadedistrict.example">contact@fadedistrict.example</a></li>
               </ul>
               <!-- Becomes a real link automatically once src/data/location.js
@@ -285,15 +284,8 @@
               <h3 class="info-card__title">Horaires</h3>
               <table class="hours">
                 <caption class="visually-hidden">Horaires d'ouverture</caption>
-                <tbody>
-                  <tr data-day="1" class="is-closed"><th scope="row">Lundi</th><td>Fermé</td></tr>
-                  <tr data-day="2"><th scope="row">Mardi</th><td>9h00 – 19h00</td></tr>
-                  <tr data-day="3"><th scope="row">Mercredi</th><td>9h00 – 19h00</td></tr>
-                  <tr data-day="4"><th scope="row">Jeudi</th><td>9h00 – 21h00</td></tr>
-                  <tr data-day="5"><th scope="row">Vendredi</th><td>9h00 – 19h00</td></tr>
-                  <tr data-day="6"><th scope="row">Samedi</th><td>8h30 – 17h00</td></tr>
-                  <tr data-day="0" class="is-closed"><th scope="row">Dimanche</th><td>Fermé</td></tr>
-                </tbody>
+                <!-- Filled by hours.js from src/data/hours.js -->
+                <tbody data-hours-table></tbody>
               </table>
             </article>
           </div>
@@ -357,14 +349,14 @@
       </section>
 
       <!-- ========================================================= BOOKING CTA -->
-      <section class="section cta" id="reserver" aria-labelledby="reserver-title">
+      <section class="section cta" id="cta" aria-labelledby="reserver-title">
         <div class="container cta__inner" data-reveal>
           <p class="eyebrow">Réservation</p>
           <h2 class="cta__title" id="reserver-title">Votre prochaine coupe commence ici.</h2>
-          <p>La réservation en ligne arrive bientôt. En attendant, appelez le salon.</p>
+          <p>Choisissez la prestation, le barbier et l'heure qui vous conviennent.</p>
           <div class="cta__actions">
-            <a class="btn btn--primary" href="tel:+41220000000">
-              Appeler le salon <span class="btn__arrow" aria-hidden="true">→</span>
+            <a class="btn btn--primary" href="/reserver.html">
+              Réserver un créneau <span class="btn__arrow" aria-hidden="true">→</span>
             </a>
             <a class="btn btn--ghost" href="#infos">Voir les horaires</a>
           </div>
@@ -392,6 +384,7 @@
               <li><a href="/services.html">Carte complète</a></li>
               <li><a href="#galerie">Galerie</a></li>
               <li><a href="#infos">Infos</a></li>
+              <li><a href="/reserver.html">Réserver</a></li>
             </ul>
           </nav>
 
@@ -399,7 +392,6 @@
             <h2 class="site-footer__title">Contact</h2>
             <ul class="site-footer__list">
               <li>Rue de l'Exemple 00, 1204 Genève</li>
-              <li><a href="tel:+41220000000">+41 22 000 00 00</a></li>
               <li><a href="mailto:contact@fadedistrict.example">contact@fadedistrict.example</a></li>
             </ul>
           </div>
@@ -425,6 +417,7 @@
             <a href="https://unsplash.com/@mitchorr" rel="noopener">Mitchell Orr</a>
             sur Unsplash
           </p>
+          <p><a href="/admin.html">Espace barbier (démo)</a></p>
         </div>
       </div>
     </footer>

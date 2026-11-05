@@ -1,0 +1,419 @@
+/* Admin panel (admin.html): login gate, agenda, blocks, clients. */
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+
+/* ---------------------------------------------------------------- Layout */
+.admin {
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + var(--space-6));
+  padding-bottom: var(--space-16);
+}
+
+.admin__badge {
+  margin-bottom: var(--space-6);
+}
+
+/* ----------------------------------------------------------------- Login */
+.admin-login {
+  display: grid;
+  min-height: 100svh;
+  align-content: center;
+  padding-top: calc(var(--header-h) + var(--space-8));
+  padding-bottom: var(--space-12);
+}
+
+.admin-login__title {
+  margin-top: var(--space-2);
+  font-size: var(--text-xl);
+}
+
+.admin-login__card {
+  display: grid;
+  gap: var(--space-6);
+  max-width: 26rem;
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  border: 1px solid var(--color-graphite);
+  background: var(--color-charcoal);
+}
+
+.admin-login__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.admin-login__divider::before,
+.admin-login__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-graphite);
+}
+
+.admin-login__hint {
+  padding: var(--space-4);
+  border: 1px dashed var(--color-gold);
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.admin-login__hint strong {
+  color: var(--color-gold);
+}
+
+.admin-login__card form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* ---------------------------------------------------------------- Utility */
+.admin-utility {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* ------------------------------------------------------------------ Tabs */
+.admin-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-graphite);
+}
+
+.admin-tab {
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--color-steel);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.admin-tab[aria-selected='true'] {
+  border-bottom-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* --------------------------------------------------------------- Toolbar */
+.toggle-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.toggle-btn {
+  min-height: 2.75rem;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-graphite);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-silver);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition:
+    border-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
+}
+
+.toggle-btn:hover {
+  border-color: var(--color-silver);
+}
+
+.toggle-btn[aria-pressed='true'] {
+  border-color: var(--color-gold);
+  background: var(--color-gold-soft);
+  color: var(--color-gold-light);
+}
+
+.admin-toolbar {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.admin-date-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.admin-date-nav__label {
+  flex: 1;
+  min-width: 10rem;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-chrome);
+}
+
+.admin-date-nav__nav {
+  display: grid;
+  place-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-graphite);
+  background: transparent;
+  color: var(--color-chrome);
+  cursor: pointer;
+}
+
+.admin-summary {
+  padding: var(--space-4) clamp(1.25rem, 4vw, 2rem);
+  margin-bottom: var(--space-6);
+  border: 1px solid var(--color-graphite);
+  background: var(--color-charcoal);
+  font-weight: 600;
+  color: var(--color-chrome);
+}
+
+/* ---------------------------------------------------------- Block form */
+.admin-block-form {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 28rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-8);
+  border: 1px solid var(--color-graphite);
+  background: var(--color-charcoal);
+}
+
+.admin-block-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.admin-block-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* -------------------------------------------------------------- Agenda */
+.agenda-section {
+  margin-top: var(--space-8);
+}
+
+.agenda-list {
+  display: grid;
+  gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.agenda-day {
+  margin-bottom: var(--space-8);
+}
+
+.agenda-day__title {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-lg);
+}
+
+.agenda-empty {
+  padding: var(--space-6);
+  border: 1px dashed var(--color-graphite);
+  color: var(--color-steel);
+}
+
+.agenda-item {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) clamp(1.25rem, 4vw, 1.75rem);
+  border: 1px solid var(--color-graphite);
+  background: var(--color-charcoal);
+}
+
+.agenda-item--block {
+  border-style: dashed;
+  background: transparent;
+}
+
+/* Marks the appointment just booked, reached via the "Voir ce rendez-vous
+   côté barbier" demo shortcut. The border stays as a static marker; only
+   the pulse is an animation, so it's skipped under reduced motion. */
+.agenda-item--highlight {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 1px var(--color-gold);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .agenda-item--highlight {
+    animation: agenda-highlight-pulse 1.6s var(--ease-out) 2;
+  }
+}
+
+@keyframes agenda-highlight-pulse {
+  0%,
+  100% {
+    background-color: var(--color-charcoal);
+  }
+  50% {
+    background-color: var(--color-gold-soft);
+  }
+}
+
+.agenda-item__time {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-gold);
+}
+
+.agenda-item__body {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.agenda-item__client {
+  font-weight: 600;
+  color: var(--color-chrome);
+}
+
+.agenda-item__barber {
+  font-weight: 400;
+  color: var(--color-steel);
+}
+
+.agenda-item__service,
+.agenda-item__contact {
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+.agenda-item__contact a {
+  color: var(--color-silver);
+}
+
+.agenda-item__note {
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-steel);
+}
+
+.agenda-item__status {
+  justify-self: start;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-graphite);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-steel);
+}
+
+.agenda-item__status--done {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.agenda-item__status--no-show,
+.agenda-item__status--cancelled {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.agenda-item__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.agenda-action {
+  min-height: 2.5rem;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-graphite);
+  background: transparent;
+  color: var(--color-silver);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.agenda-action:hover {
+  border-color: var(--color-silver);
+}
+
+.agenda-action--danger:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.agenda-item__confirm {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px dashed var(--color-gold);
+}
+
+.agenda-item__confirm-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+@media (min-width: 40rem) {
+  .agenda-item {
+    grid-template-columns: 8rem 1fr auto;
+    align-items: start;
+  }
+
+  .agenda-item__time {
+    white-space: nowrap;
+  }
+}
+
+/* ------------------------------------------------------------- Clients */
+.client-search {
+  max-width: 24rem;
+  margin-bottom: var(--space-6);
+}
+
+.client-list {
+  display: grid;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+
+.client-item {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) clamp(1.25rem, 4vw, 1.75rem);
+  border: 1px solid var(--color-graphite);
+  background: var(--color-charcoal);
+}
+
+.client-item__name {
+  font-weight: 600;
+  color: var(--color-chrome);
+}
+
+.client-item__phone,
+.client-item__meta {
+  font-size: var(--text-sm);
+  color: var(--color-steel);
+}
+
+/* --------------------------------------------------------- Reset button */
+.admin-reset__confirm {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 28rem;
+  padding: var(--space-4);
+  margin-bottom: var(--space-6);
+  border: 1px dashed var(--color-error);
+}
+
+.admin-reset__confirm-actions {
+  display: flex;
+  gap: var(--space-3);
+}
